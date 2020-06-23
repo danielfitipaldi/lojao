@@ -1,7 +1,6 @@
 package br.unit.lojaoDasPecas.view;
 
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
 
 import br.unit.lojaoDasPecas.controllers.VendedorController;
@@ -24,18 +23,16 @@ public class VendedorView {
 			String nome = leTeclado.next();
 			leTeclado.nextLine();
 
-			System.out.println("Número do RG (Identidade): ");
-			String rg = leTeclado.next();
+			System.out.println("Salário: R$");
+			Double salario = leTeclado.nextDouble();
 			leTeclado.nextLine();
 
-			System.out.println("Endereço: ");
-			String endereco = leTeclado.next();
+			System.out.println("Bairro: ");
+			String bairro = leTeclado.next();
 			leTeclado.nextLine();
 
-			Random random = new Random();
-			int COD_VENDEDOR = random.nextInt(101);
 
-			Vendedor novoVendedor = new Vendedor(COD_VENDEDOR, nome, cpf, rg, endereco);
+			Vendedor novoVendedor = new Vendedor(null, nome, cpf, salario, bairro, null);
 			vendedorController.inserir(novoVendedor);
 			return novoVendedor;
 		} else {
@@ -60,8 +57,8 @@ public class VendedorView {
 		
 		System.out.println("Nome do vendedor: " + vendedor.getNome());
 		System.out.println("O que deseja alterar? [ 1 ] Nome do Cliente \n"
-				+ "[ 2 ] RG \n"
-				+ "[ 3 ] Endereço");
+				+ "[ 2 ] Salário \n"
+				+ "[ 3 ] Bairro");
 		int opcao = leTeclado.nextInt();
 		switch (opcao) {
 		case 1:
@@ -73,18 +70,18 @@ public class VendedorView {
 			System.out.println("Atualização concluída");
 			break;
 		case 2:
-			System.out.println("Digite o novo RG");
-			String rg = leTeclado.next();
+			System.out.println("Digite o novo Salário");
+			Double salario = leTeclado.nextDouble();
 			leTeclado.nextLine();
-			vendedor.setRg(rg);
+			vendedor.setSalario(salario);
 			vendedorController.atualizar(vendedor);
 			System.out.println("Atualização concluída");
 			break;
 		case 3:
-			System.out.println("Digite o novo Endereço");
-			String endereco = leTeclado.next();
+			System.out.println("Novo bairro: ");
+			String bairro = leTeclado.next();
 			leTeclado.nextLine();
-			vendedor.setEndereco(endereco);
+			vendedor.setBairro(bairro);
 			vendedorController.atualizar(vendedor);
 			System.out.println("Atualização concluída");
 			break;

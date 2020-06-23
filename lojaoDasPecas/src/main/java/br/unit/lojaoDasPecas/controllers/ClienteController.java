@@ -13,9 +13,9 @@ public class ClienteController {
 		clienteDao = new ClienteDAO();
 	}
 	
-	public boolean inserir(Cliente cliente) {
+	public void inserir(Cliente cliente) {
 		clienteDao.inserir(cliente);
-		return true;
+		
 	}
 	public void atualizar(Cliente cliente) {
 		clienteDao.atualizar(cliente);

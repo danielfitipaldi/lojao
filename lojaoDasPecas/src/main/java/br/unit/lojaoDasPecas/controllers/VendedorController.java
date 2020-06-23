@@ -13,7 +13,7 @@ public class VendedorController {
 		vendedorDao = new VendedorDAO();
 	}
 	
-	public boolean inserir(Vendedor vendedor) {
+	public boolean inserir(Vendedor vendedor) { // Try
 		vendedorDao.inserir(vendedor);
 		return true;
 	}
@@ -31,6 +31,10 @@ public class VendedorController {
 	
 	public List <Vendedor> listaVendedores() {
 		return vendedorDao.getVendedores();
+	}
+	
+	public Vendedor procurarNome(String nome) {
+		return vendedorDao.procurarNome(nome);
 	}
 
 

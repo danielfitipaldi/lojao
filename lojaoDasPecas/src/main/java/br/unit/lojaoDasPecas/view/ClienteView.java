@@ -1,7 +1,6 @@
 package br.unit.lojaoDasPecas.view;
 
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
 
 import br.unit.lojaoDasPecas.controllers.ClienteController;
@@ -21,21 +20,13 @@ public class ClienteView {
 		if (cliente == null) {
 			System.out.println("Nome: ");
 			String nome = leTeclado.next();
-			System.out.println();
-
-			System.out.println("Número do RG (Identidade): ");
-			String rg = leTeclado.next();
-			System.out.println();
 			leTeclado.nextLine();
-			
-			System.out.println("Endereço. Rua: ");
-			String endereco = leTeclado.nextLine();
-			System.out.println();
 
-			Random random = new Random();
-			int COD_CLIENTE = random.nextInt(101);
+			System.out.println("Cidade: ");
+			String cidade = leTeclado.next();
+			leTeclado.nextLine();
 
-			Cliente novoCliente = new Cliente(COD_CLIENTE, nome, cpf, rg, endereco);
+			Cliente novoCliente = new Cliente(null, nome, cpf, cidade);
 			clienteController.inserir(novoCliente);
 			return novoCliente;
 			
@@ -61,8 +52,7 @@ public class ClienteView {
 		
 		System.out.println("Nome do cliente: " + cliente.getNome());
 		System.out.println("O que deseja alterar? [ 1 ] Nome do Cliente \n"
-				+ "[ 2 ] RG \n"
-				+ "[ 3 ] Endereço");
+				+ "[ 2 ] Cidade");
 		int opcao = leTeclado.nextInt();
 		switch (opcao) {
 		case 1:
@@ -74,18 +64,10 @@ public class ClienteView {
 			System.out.println("Atualização concluída");
 			break;
 		case 2:
-			System.out.println("Digite o novo RG");
-			String rg = leTeclado.next();
+			System.out.print("Digite a nova Cidade: ");
+			String cidade = leTeclado.next();
 			leTeclado.nextLine();
-			cliente.setRg(rg);
-			clienteController.atualizar(cliente);
-			System.out.println("Atualização concluída");
-			break;
-		case 3:
-			System.out.print("Digite o novo Endereço");
-			String endereco = leTeclado.next();
-			leTeclado.nextLine();
-			cliente.setEndereco(endereco);
+			cliente.setCidade(cidade);
 			clienteController.atualizar(cliente);
 			System.out.println("Atualização concluída");
 			break;

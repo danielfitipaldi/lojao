@@ -7,19 +7,19 @@ import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import br.unit.lojaoDasPecas.entidades.Vendedor;
+import br.unit.lojaoDasPecas.entidades.Produto;
 
-public class VendedorDAO {
+public class ProdutoDAO {
 	static Session session;
 
-	public void inserir(Vendedor vendedor) {
+	public void inserir(Produto produto) {
 		Transaction transaction = null;
 
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
 
 			transaction = session.beginTransaction();
-			session.saveOrUpdate(vendedor);
+			session.saveOrUpdate(produto);
 			transaction.commit();
 
 		} catch (Exception e) {
@@ -29,24 +29,17 @@ public class VendedorDAO {
 		}
 	}
 
-	public List<Vendedor> getVendedores() {
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-			return session.createQuery("from Vendedor", Vendedor.class).list();
-		}
-	}
-
-	public void atualizar(Vendedor vendedor) {
+	public void editar(Produto produto) {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
-			session.update(vendedor);
+			session.update(produto);
 			session.getTransaction().commit();
 
 		} catch (Exception sqlException) {
 			if (null != session.getTransaction()) {
 				session.getTransaction().rollback();
 			}
-
 			sqlException.printStackTrace();
 		} finally {
 			if (session != null) {
@@ -55,11 +48,11 @@ public class VendedorDAO {
 		}
 	}
 
-	public void deletar(Vendedor vendedor) {
+	public void deletar(Produto produto) {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
-			session.delete(vendedor);
+			session.delete(produto);
 
 			session.getTransaction().commit();
 		} catch (Exception sqlException) {
@@ -73,49 +66,31 @@ public class VendedorDAO {
 			}
 		}
 	}
-
-	public Vendedor procurar(String cpf) {
+	public Produto procurar(String nome) {
 		try {
-
-			Session session = HibernateUtil.getSessionFactory().openSession();
 			
-			String hql = "SELECT f FROM Vendedor f WHERE f.cpf = :cpf";
-
-			Query query = session.createQuery(hql, Vendedor.class);
-			query.setParameter("cpf", cpf);
-
-			Vendedor vendedor = (Vendedor) query.getSingleResult();
-
-			session.close();
-
-			return vendedor;
-
-		} catch (Exception e) {
-
-		}
-		return null;
-
-	}
-	public Vendedor procurarNome(String nome) {
-		try {
-
 			Session session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "SELECT p FROM Produto p WHERE p.nome = :nome";
 			
-			String hql = "SELECT f FROM Vendedor f WHERE like f.nome = :nome";
-
-			Query query = session.createQuery(hql, Vendedor.class);
+			Query query = session.createQuery(hql, Produto.class);
 			query.setParameter("nome", nome);
-
-			Vendedor vendedor = (Vendedor) query.getSingleResult();
-
+			
+			Produto produto = (Produto) query.getSingleResult();
+			
 			session.close();
-
-			return vendedor;
-
+			
+			return produto;
+			
 		} catch (Exception e) {
-
+		  System.out.println(e.getMessage());
 		}
 		return null;
-	
+		
 	}
+	public List<Produto> getProdutos() {
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			return session.createQuery("from Produto", Produto.class).list();
+		}
+	}
+
 }

@@ -9,6 +9,9 @@ import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
 import br.unit.lojaoDasPecas.entidades.Cliente;
+import br.unit.lojaoDasPecas.entidades.ConsultaProduto;
+import br.unit.lojaoDasPecas.entidades.Pedido;
+import br.unit.lojaoDasPecas.entidades.Produto;
 import br.unit.lojaoDasPecas.entidades.Vendedor;
 
 public class HibernateUtil {
@@ -31,6 +34,9 @@ public class HibernateUtil {
 				configuration.setProperties(settings);
 				configuration.addAnnotatedClass(Cliente.class);
 				configuration.addAnnotatedClass(Vendedor.class);
+				configuration.addAnnotatedClass(Produto.class);
+				configuration.addAnnotatedClass(ConsultaProduto.class);
+				configuration.addAnnotatedClass(Pedido.class);
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(configuration.getProperties()).build();
 				sessionFactory = configuration.buildSessionFactory(serviceRegistry);
