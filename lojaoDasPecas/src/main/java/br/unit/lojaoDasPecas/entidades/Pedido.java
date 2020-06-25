@@ -39,7 +39,7 @@ public class Pedido implements Serializable {
 	private Cliente cliente;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="NOME_PRODUTO", referencedColumnName = "NOME_PRODUTO")
+	@JoinColumn(name="COD_PRODUTO", referencedColumnName = "COD_PRODUTO")
 	private Produto produto;
 	
 	@ManyToOne(cascade = CascadeType.ALL)

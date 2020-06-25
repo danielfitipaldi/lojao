@@ -26,7 +26,6 @@ public class PedidoView extends ClienteView{
 		
 		novoPedido.setIdPedido(null);
 		
-		
 		System.out.println("[ 1 ] Novo Cliente\n[ 2 ] Cliente já cadastrado");
 		int opcao = leTeclado.nextInt();
 		switch (opcao) {

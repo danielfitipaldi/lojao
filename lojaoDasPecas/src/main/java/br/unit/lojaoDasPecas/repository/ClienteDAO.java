@@ -8,7 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import br.unit.lojaoDasPecas.entidades.Cliente;
-import br.unit.lojaoDasPecas.entidades.Vendedor;
+
 
 public class ClienteDAO {
 	static Session session;

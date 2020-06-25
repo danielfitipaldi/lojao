@@ -5,11 +5,13 @@ import java.util.Scanner;
 
 import br.unit.lojaoDasPecas.exception.ClienteException;
 import br.unit.lojaoDasPecas.exception.VendedorException;
-
+import br.unit.lojaoDasPecas.view.ComissaoView;
 import br.unit.lojaoDasPecas.view.ConsultaProdutoView;
 import br.unit.lojaoDasPecas.view.ConsultaVendasView;
+import br.unit.lojaoDasPecas.view.MaisVendidosView;
 import br.unit.lojaoDasPecas.view.PedidoView;
 import br.unit.lojaoDasPecas.view.ProdutoView;
+import br.unit.lojaoDasPecas.view.RelatorioVendasView;
 import br.unit.lojaoDasPecas.view.VendedorView;
 
 public class lojaoMain {
@@ -21,6 +23,9 @@ public class lojaoMain {
 	private static ProdutoView produtoView = new ProdutoView();
 	private static PedidoView pedidoView = new PedidoView();
 	private static ConsultaVendasView cvview = new ConsultaVendasView();
+	private static RelatorioVendasView rvview = new RelatorioVendasView();
+	private static MaisVendidosView mvView = new MaisVendidosView();
+	private static ComissaoView cmView = new ComissaoView();
 	
 	public static void main(String[] args) {
 		Scanner leTeclado = new Scanner(System.in);
@@ -68,6 +73,9 @@ public class lojaoMain {
 						produtoView.deletarProdutos();
 					}
 					if (opcao2 == 4) {
+						produtoView.listarProdutos();
+					}
+					if (opcao2 == 5) {
 						leTeclado.nextLine();
 					}
 				}
@@ -81,10 +89,8 @@ public class lojaoMain {
 					}if (opcao2 == 2) {
 						pedidoView.editarPedido();
 					}if (opcao2 == 3) {
-						pedidoView.deletarPedido();
-					}if (opcao2 == 4) {
 						pedidoView.listarPedidos();
-					}if (opcao2 == 5) {
+					}if (opcao2 == 4) {
 						leTeclado.nextLine();
 					}
 				}
@@ -94,7 +100,10 @@ public class lojaoMain {
 					cpview.getConsulta();
 				}
 				if (opcao == 5) {
-					cvview.getConsultaVendas();
+					mvView.getConsultaVendas();
+				}
+				if (opcao == 6) {
+					cmView.getConsulta();
 				}
 				
 				
@@ -124,7 +133,7 @@ public class lojaoMain {
 		System.out.println("[ 2 ] - Produto");
 		System.out.println("[ 3 ] - Pedido");
 		System.out.println("[ 4 ] - Controle de Estoque");
-		System.out.println("[ 5 ] - Consulta de Vendas");
+		System.out.println("[ 5 ] - Relatório de Vendas");
 		System.out.println("[ 999 ] - Sair");
 		System.out.println("---------------------------------");
 	}
@@ -136,9 +145,8 @@ public class lojaoMain {
 		System.out.println("---------------------------------");
 		System.out.println("[ 1 ] Registrar Pedido\n"
 				+ "[ 2 ] Alterar Pedido\n"
-				+ "[ 3 ] Excluir Pedido \n"
-				+ "[ 4 ] Listar Pedidos\n"
-				+ "[ 5 ] Voltar" );
+				+ "[ 3 ] Listar Pedidos \n"
+				+ "[ 4 ] Voltar\n" );
 	}
 	public static void menuVendedor() {
 		System.out.println();
@@ -159,7 +167,8 @@ public class lojaoMain {
 		System.out.println("[ 1 ] Cadastrar Produto");
 		System.out.println("[ 2 ] Editar Produto");
 		System.out.println("[ 3 ] Excluir Produto");
-		System.out.println("[ 4 ] Voltar");
+		System.out.println("[ 4 ] Listar produtos");
+		System.out.println("[ 5 ] Voltar");
 	}
 
 }
