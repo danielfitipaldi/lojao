@@ -29,13 +29,13 @@ public class Pedido implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID_PEDIDO")
-	private Integer IdPedido;
+	private Integer idPedido;
 	
 	@Column(name="QUANTIDADE")
 	private Integer quantidade;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="ID_CLIENTE", referencedColumnName = "COD_CLIENTE")
+	@JoinColumn(name="COD_CLIENTE", referencedColumnName = "COD_CLIENTE")
 	private Cliente cliente;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -43,7 +43,7 @@ public class Pedido implements Serializable {
 	private Produto produto;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "ID_VENDEDOR", referencedColumnName = "COD_VENDEDOR")
+	@JoinColumn(name = "COD_VENDEDOR", referencedColumnName = "COD_VENDEDOR")
 	private Vendedor vendedor;
 	
 }

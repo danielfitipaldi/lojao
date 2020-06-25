@@ -8,20 +8,21 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import br.unit.lojaoDasPecas.entidades.Cliente;
+import br.unit.lojaoDasPecas.entidades.Vendedor;
 
 public class ClienteDAO {
 	static Session session;
 
 	public void inserir(Cliente cliente) {
 		Transaction transaction = null;
-		
+
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
-			
+
 			transaction = session.beginTransaction();
 			session.saveOrUpdate(cliente);
 			transaction.commit();
-			
+
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
@@ -41,7 +42,7 @@ public class ClienteDAO {
 			session.beginTransaction();
 			session.update(cliente);
 			session.getTransaction().commit();
-			
+
 		} catch (Exception sqlException) {
 			if (null != session.getTransaction()) {
 				session.getTransaction().rollback();
@@ -72,28 +73,50 @@ public class ClienteDAO {
 			}
 		}
 	}
-	
-	
+
 	public Cliente procurar(String cpf) {
 		try {
-			
+
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			String hql = "SELECT c FROM Cliente c WHERE c.cpf = :cpf";
-			
+
 			Query query = session.createQuery(hql, Cliente.class);
 			query.setParameter("cpf", cpf);
-			
+
 			Cliente cliente = (Cliente) query.getSingleResult();
-			
+
 			session.close();
-			
+
 			return cliente;
-			
+
 		} catch (Exception e) {
-		  System.out.println(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 		return null;
-		
+
+	}
+
+	public Cliente procurarNome(String nome) {
+		try {
+
+			Session session = HibernateUtil.getSessionFactory().openSession();
+
+			String hql = "SELECT c FROM Cliente c WHERE c.nome = :nome";
+
+			Query query = session.createQuery(hql, Cliente.class);
+			query.setParameter("nome", nome);
+
+			Cliente cliente = (Cliente) query.getSingleResult();
+
+			session.close();
+
+			return cliente;
+
+		} catch (Exception e) {
+
+		}
+		return null;
+
 	}
 
 }

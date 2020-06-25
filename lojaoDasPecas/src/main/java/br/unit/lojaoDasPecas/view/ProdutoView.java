@@ -45,8 +45,9 @@ public class ProdutoView {
 			throw new ProdutoException("Produto não localizado");
 		}
 		System.out.println("Nome do produto: " + produto.getNome());
-		System.out.println("O que deseja alterar? [ 1 ] Nome do Produto \n"
-				+ "[ 2 ] Preço do produto"
+		System.out.println("O que deseja alterar?\n "
+				+ "[ 1 ] Nome do Produto \n"
+				+ "[ 2 ] Preço do produto\n"
 				+ "[ 3 ] Quantidade em estoque");
 		int opcao = leTeclado.nextInt();
 		switch (opcao) {

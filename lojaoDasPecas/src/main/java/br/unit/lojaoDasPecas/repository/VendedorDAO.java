@@ -101,7 +101,7 @@ public class VendedorDAO {
 
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			
-			String hql = "SELECT f FROM Vendedor f WHERE like f.nome = :nome";
+			String hql = "SELECT f FROM Vendedor f WHERE f.nome = :nome";
 
 			Query query = session.createQuery(hql, Vendedor.class);
 			query.setParameter("nome", nome);

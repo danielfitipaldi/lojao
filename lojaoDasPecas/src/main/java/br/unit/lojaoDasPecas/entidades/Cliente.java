@@ -25,7 +25,7 @@ public class Cliente implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="COD_CLIENTE")
-	private Integer COD_CLIENTE;
+	private Integer codCliente;
 	
 	@Column(name="NOME")
 	private String nome;

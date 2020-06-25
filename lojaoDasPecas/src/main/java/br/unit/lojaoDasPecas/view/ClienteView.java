@@ -13,7 +13,7 @@ public class ClienteView {
 
 	public Cliente cadastrarCliente() {
 
-		System.out.println("Por favor, digite o seu CPF: ");
+		System.out.println("Digite o CPF do cliente para efetuar o cadasto: ");
 		String cpf = leTeclado.next();
 		ClienteController clienteController = new ClienteController();
 		Cliente cliente = clienteController.procurar(cpf);
@@ -51,7 +51,7 @@ public class ClienteView {
 		}
 		
 		System.out.println("Nome do cliente: " + cliente.getNome());
-		System.out.println("O que deseja alterar? [ 1 ] Nome do Cliente \n"
+		System.out.println("O que deseja alterar?\n [ 1 ] Nome do Cliente \n"
 				+ "[ 2 ] Cidade");
 		int opcao = leTeclado.nextInt();
 		switch (opcao) {

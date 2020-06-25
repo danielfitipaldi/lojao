@@ -32,7 +32,7 @@ public class VendedorView {
 			leTeclado.nextLine();
 
 
-			Vendedor novoVendedor = new Vendedor(null, nome, cpf, salario, bairro, null);
+			Vendedor novoVendedor = new Vendedor(null, nome, cpf, salario, bairro);
 			vendedorController.inserir(novoVendedor);
 			return novoVendedor;
 		} else {
@@ -92,8 +92,7 @@ public class VendedorView {
 	public static void listarVendedores() {
 		VendedorController vendedorController = new VendedorController();
 		List<Vendedor> vendedores = vendedorController.listaVendedores();
-		vendedores.forEach(System.out::println);
-		
+		vendedores.forEach(System.out::println);	
 	}
 	
 	public void deletarVendedor() {
